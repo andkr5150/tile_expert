@@ -1,0 +1,13 @@
+div {
+    border-style: solid;
+}
+.img-wrap {
+    position: relative;
+}
+
+.img-responsive .pic_block {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

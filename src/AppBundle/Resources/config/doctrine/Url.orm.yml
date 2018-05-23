@@ -1,0 +1,16 @@
+AppBundle\Entity\Url:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\UrlRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        urlText:
+            type: string
+            length: '255'
+            column: url_text
+    lifecycleCallbacks: {  }

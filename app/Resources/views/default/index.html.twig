@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    {% block stylesheets %}
+        <link href="/templates/style.css" rel="stylesheet" type="text/css" />
+    {% endblock %}
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <form method="post" class="form-inline">
+        <div class="form-group mb-2">
+            <label><strong>пример:</strong> http://example.com</label> <br/>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <input class="form-control" type="text" name="parse_html" placeholder="http://" size="30px">
+            <input class="form-control" type="text" name="weight_pic" placeholder="weight, px" size="10px">
+            <input class="form-control" type="text" name="height_pic" placeholder="height, px" size="10px">
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-2">Выполнить</button>
+    </form>
+
+    <a href="{{ path('view') }}" class="btn btn-success" role="button">Картинки из базы</a>
+
+    <div class="container-fluid">
+        <div class="row">
+            {% for entry in datas %}
+            <div class="col-sm">
+                {% if entry['url']=='empty' %}
+                    <b>Нет картинок</b>
+                {% else %}
+                    <div class="col-md-4">
+                        <img style="float:left" src="{{ entry['url'] }}" width="{{ entry['weight'] }}px" height="{{ entry['height'] }}px" title="{{ entry['size'] }}">
+
+                        <div class="row">
+                            <div class="col-md-1" style="width: 20px; height: 20px; background: {{ entry['color'][0] }}; "></div>
+                            <div class="col-md-1" style="width: 20px; height: 20px; background: {{ entry['color'][1] }}; "></div>
+                            <div class="col-md-1" style="width: 20px; height: 20px; background: {{ entry['color'][2] }}; "></div>
+                            <div class="col-md-1" style="width: 20px; height: 20px; background: {{ entry['color'][3] }}; "></div>
+                            <div class="col-md-1" style="width: 20px; height: 20px; background: {{ entry['color'][4] }}; "></div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
